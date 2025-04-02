@@ -20,12 +20,6 @@ document.getElementById('itemContext').innerHTML = `
     <br>清洗后可以扑点爽身粉保护以免起油哦~
     <br>可以放收纳袋子里面，阿然喜欢放原本盒子给的架子❤
     <br>
-    <br> · 退款政策
-    <br>1. 签收快递七天内可申请
-    <br>2. 未拆封表面并塑封完整
-    <br>3. 防伪码没有撕开或毁坏
-    <br>4. 赠品未使用
-    <br>
     <br>品牌： A-ONE
     <br>产地： 中国大陆
     <br>材质： TPE
@@ -35,4 +29,11 @@ document.getElementById('itemContext').innerHTML = `
 </p>
 <img src="img/aone/pic2.jpg" style="width: 100%" alt="alternative">
 <img src="img/aone/pic3.jpg" style="width: 100%" alt="alternative">
+<p> · 退款政策
+       <br>1. 签收快递七天内可申请
+       <br>2. 未拆封表面并塑封完整
+       <br>3. 防伪码没有撕开或毁坏
+       <br>4. 赠品未使用
+       <br>
+</p>
 `;

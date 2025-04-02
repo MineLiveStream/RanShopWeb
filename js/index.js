@@ -285,6 +285,7 @@ getItem();
 
 // 更改页面自动更改详情
 let logItemSelectValue;
+let logItemPageValue;
 itemSelect.addEventListener('change', function() {
     if (itemSelect.value) {
         logItemSelectValue = itemSelect.value;
@@ -294,10 +295,14 @@ itemSelect.addEventListener('change', function() {
     const item = itemData[itemSelect.value];
     const price = (item.price / 100).toFixed(2);
     document.getElementById('priceText').innerHTML = "商品总价：￥" + price + "<br>邮费：￥0.00<br>实付款：￥" + price;
-    const itemContext = document.getElementById('itemContext');
-    itemContext.innerHTML = "";
-    const itemScript = document.createElement("script");
-    itemScript.type = "text/javascript";
-    itemScript.src = "constant/" + item.page + ".js";
-    itemContext.appendChild(itemScript);
+
+    if (item.page !== logItemPageValue) {
+        logItemPageValue = item.page;
+        const itemContext = document.getElementById('itemContext');
+        itemContext.innerHTML = "";
+        const itemScript = document.createElement("script");
+        itemScript.type = "text/javascript";
+        itemScript.src = "constant/" + item.page + ".js";
+        itemContext.appendChild(itemScript);
+    }
 });
