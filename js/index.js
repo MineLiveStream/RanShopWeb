@@ -1,6 +1,5 @@
 // API地址
 const api = 'https://shop-api.minelive.top';
-//const api = 'http://shop-api.minelive.top';
 
 // 主题
 mdui.setColorScheme('#a8a8e4');
