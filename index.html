@@ -24,44 +24,17 @@
 
         <div style="display: flex; align-items: start;">
 
-            <mdui-card style="overflow-y: auto;width: 65%">
-                <h2 id="title">【阿然推荐】👍日本A-one六连子宫飞机杯</h2>
-                <img src="img/aone/pic1.jpg" style="width: 50%" alt="alternative">
-                <p id="context">
-                    推荐理由：
-                    <br>这个杯子然复购过好多次，性价比超级高，刺激度高！
-                    <br>清洗也很方便，适合新手入门~
-                    <br>异味控制的很棒，有股淡淡的硅胶奶味。
-                    <br>
-                    <br>新手教程：
-                    <br>初次使用，沐浴露清洗，内外用纸巾吸干，加润滑油...
-                    <br>可带套也可以不带，不过事后都是要洗的哦( ˶ˆ꒳ˆ˵ )
-                    <br>如果使用加热棒请不要超过3分钟否则会伤害杯子
-                    <br>用完记得用沐浴露清洗清洗并手扣出来
-                    <br>尽量不要用肥皂/消毒水/酒精等腐蚀性产品
-                    <br>清洗后可以扑点爽身粉保护以免起油哦~
-                    <br>可以放收纳袋子里面，阿然喜欢放原本盒子给的架子❤
-                    <br>
-                    <br>品牌： A-ONE
-                    <br>产地： 中国大陆
-                    <br>材质： TPE
-                    <br>重量： ≈300g
-                    <br>全长： ≈150mm
-                    <br>通道长： ≈110mm
-                </p>
-                <img src="img/aone/pic2.jpg" style="width: 100%" alt="alternative">
-                <img src="img/aone/pic3.jpg" style="width: 100%" alt="alternative">
-            </mdui-card>
+            <mdui-card style="overflow-y: auto;width: 65%" id="itemContext"></mdui-card>
 
             <mdui-tabs value="tab-1" class="mdui-prose" style="width: 35%">
 
                 <mdui-tab value="tab-1" id="chatroomTitle">🛍️立即购买</mdui-tab>
                 <mdui-tab value="tab-2">📋查询订单</mdui-tab>
-                <mdui-tab value="tab-3">🏅更多推荐</mdui-tab>
 
                 <mdui-tab-panel slot="panel" value="tab-1" style="margin-left: 10px; margin-right: 10px">
-                    <mdui-text-field id="name" label="收货人" style="margin-bottom: 5px;margin-top: 5px"></mdui-text-field>
+                    <mdui-select label="商品" id="itemSelect" style="margin-bottom: 5px;margin-top: 5px"></mdui-select>
 
+                    <mdui-text-field id="name" label="收货人" style="margin-bottom: 5px"></mdui-text-field>
                     <div style="display: flex; justify-content: center;align-items: center;margin-bottom: 5px">
                         <mdui-select style="width: 25%;margin-right: 3px" value="86" id="country">
                             <mdui-menu-item value="86">+86</mdui-menu-item>
@@ -72,23 +45,16 @@
                     <mdui-text-field id="address" label="收货地址(仅支持中国大陆)" style="margin-bottom: 5px" rows="2"></mdui-text-field>
                     <mdui-text-field id="email" label="邮箱地址(用于接受快递单号)" style="margin-bottom: 5px"></mdui-text-field>
                     <mdui-text-field id="confirm-email" label="重复邮箱地址(请重新输入邮箱)"></mdui-text-field>
-                    <p>商品总价：￥78.00<br>邮费：￥0.00<br>实付款：￥78.00</p>
+                    <p id="priceText"></p>
                     <mdui-button full-width id="buyBtn" style="margin-bottom: 10px">立即下单，隐私发货！</mdui-button>
                     <mdui-divider></mdui-divider>
                 </mdui-tab-panel>
                 <mdui-tab-panel slot="panel" value="tab-2" style="margin-left: 10px; margin-right: 10px">
-                    <p>付款后将发送至您邮箱,<br>若未收到请检查垃圾箱,<br>若仍然无法找到订单号,<br>点击右上角按钮加群联系群主。</p>
-                    <mdui-text-field id="name" label="订单号" style="margin-bottom: 10px;"></mdui-text-field>
-                    <mdui-button full-width id="checkBtn" style="margin-bottom: 10px;">查询订单</mdui-button>
+                    <p>付款后将发送至您邮箱,<br>若未收到请检查垃圾箱,<br>仍然无法找到订单号或需退款,<br>点击右上角按钮加群联系群主。</p>
+                    <mdui-text-field id="orderId" label="订单号" style="margin-bottom: 10px;"></mdui-text-field>
+                    <mdui-button full-width id="checkLogBtn" style="margin-bottom: 10px;">查询订单</mdui-button>
                     <mdui-divider></mdui-divider>
-                    <p>查询结果</p>
-                    <div id="result"></div>
-                    <mdui-divider></mdui-divider>
-                </mdui-tab-panel>
-                <mdui-tab-panel slot="panel" value="tab-3" style="margin-left: 10px; margin-right: 10px">
-                    <mdui-card style="margin-top: 10px; overflow-y: auto; max-height: 480px;width: 100%">
-                        <p>正在上新，敬请期待...</p>
-                    </mdui-card>
+                    <mdui-card id="logResultText"></mdui-card>
                     <mdui-divider></mdui-divider>
                 </mdui-tab-panel>
             </mdui-tabs>

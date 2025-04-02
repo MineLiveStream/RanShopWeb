@@ -3,7 +3,7 @@ const api = 'http://127.0.0.1:2263';
 //const api = 'http://shop-api.minelive.top';
 
 // 主题
-mdui.setColorScheme('#ff3d00');
+mdui.setColorScheme('#a8a8e4');
 
 const qrcodeDialog = document.getElementById('qrcodeDialog');
 const cancelOrderBtn = document.getElementById('cancelOrderBtn');
@@ -68,7 +68,7 @@ function createOrder(payType) {
         address: document.getElementById('address').value,
         email: document.getElementById('email').value,
         count: 1,
-        item: 'aone',
+        item: document.getElementById('itemSelect').value,
         payType: payType
     };
     fetch(api + "/order", {
@@ -104,7 +104,7 @@ function createOrder(payType) {
                 };
                 qrcodeDialog.description = '付款价格：' + (data.price / 100) + ' 元';
                 qrcodeDialog.open = true;
-                pollOrderStatus(data.order, 3000);
+                pollOrderStatus(data.orderId, 3000);
             } else {
                 mdui.snackbar({message: data.msg});
             }
@@ -133,10 +133,10 @@ async function pollOrderStatus(orderId, interval = 3000) {
     } while (true);
 }
 
-async function checkOrder(order) {
+async function checkOrder(orderId) {
     try {
         const params = {
-            order: order
+            orderId: orderId
         };
         const url = api + "/order";
         const response = await fetch(url, {
@@ -181,14 +181,124 @@ document.getElementById('buyBtn').addEventListener('click', function(event) {
     } else if (document.getElementById('email').value !== document.getElementById('confirm-email').value) {
         mdui.snackbar({message: "两次输入邮箱地址不一致"});
     } else {
-        document.getElementById('confirmText').innerHTML ='请选择您的付款方式'
-            + '<br>收货人: ' + document.getElementById('name').value
+        document.getElementById('confirmText').innerHTML =
+            '收货人: ' + document.getElementById('name').value
             + '<br>联系电话: +86 ' + document.getElementById('phone').value
             + '<br>收货地址: ' + document.getElementById('address').value
             + '<br>通知邮箱: ' + document.getElementById('email').value
-            + '<br>请确认以上信息准确无误';
+            + '<br>请确认以上信息准确无误<br>'
+            + '<br>' + document.getElementById('priceText').innerHTML
+            + '<br>请选择您的付款方式';
 
         document.getElementById('paymentDialog').open = true;
         document.getElementById('buyBtn').loading = true;
     }
+});
+
+// 查询订单按钮
+document.getElementById('checkLogBtn').addEventListener('click', function(event) {
+    if (!document.getElementById('orderId').value) {
+        mdui.snackbar({message: "订单号不能为空"});
+    } else {
+        checkLog(document.getElementById('orderId').value);
+        document.getElementById('checkLogBtn').loading = true;
+    }
+});
+
+// 查询订单号
+function checkLog(orderId) {
+    fetch(api + "/order?order=" + orderId)
+        .then(response => {
+                if (!response.ok) {
+                    throw new Error('错误响应码');
+                }
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById('checkLogBtn').loading = false;
+                if (data.code === 200) {
+                    document.getElementById('logResultText').innerHTML =
+                        "<h3>查询结果</h3>收货人: " + data.name +
+                        "<br>邮箱地址: " + data.email +
+                        "<br>联系电话: " + data.phone +
+                        "<br>订单状态: " + data.status +
+                        "<br>下单数量: " + data.count +
+                        "<br>购买时间: " + formatTimestamp(data.time) +
+                        "<br>支付方式: " + data.payType +
+                        "<br>快递单号: " + data.delivery;
+                    mdui.snackbar({message: "查询成功啦╭(○｀∀´○)╯"});
+                } else {
+                    mdui.snackbar({message: data.msg});
+                }
+            })
+            .catch(error => {
+                document.getElementById('checkLogBtn').loading = false;
+                mdui.snackbar({message: '不好了！查询订单时发生错误'});
+                document.getElementById('logResultText').textContent = '查询订单发生错误: ' + error.message;
+            });
+}
+
+// 格式化日期
+function formatTimestamp(timestamp) {
+    const date = new Date(timestamp);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 月份从0开始，需要加1
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
+}
+
+// 获取价格
+const itemSelect = document.getElementById('itemSelect');
+let itemData;
+function getItem() {
+    fetch(api + "/item")
+        .then(response => {
+                if (!response.ok) {
+                    throw new Error('错误响应码');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.code === 200) {
+                    itemData = data.data;
+                    itemSelect.innerHTML = "";
+                    for (const key in data.data) {
+                        if (data.data.hasOwnProperty(key)) {
+                            const item = data.data[key];
+                            const mduiItem = document.createElement('mdui-menu-item');
+                            mduiItem.value = key;
+                            mduiItem.innerHTML = item.name;
+                            itemSelect.appendChild(mduiItem);
+                            itemSelect.value = mduiItem.value;
+                        }
+                    }
+                } else {
+                    mdui.snackbar({message: data.msg});
+                }
+            })
+            .catch(error => {
+                mdui.snackbar({message: '不好了！获取商品时发生错误'});
+            });
+}
+getItem();
+
+// 更改页面自动更改详情
+let logItemSelectValue;
+itemSelect.addEventListener('change', function() {
+    if (itemSelect.value) {
+        logItemSelectValue = itemSelect.value;
+    } else {
+        itemSelect.value = logItemSelectValue;
+    }
+    const item = itemData[itemSelect.value];
+    const price = (item.price / 100).toFixed(2);
+    document.getElementById('priceText').innerHTML = "商品总价：￥" + price + "<br>邮费：￥0.00<br>实付款：￥" + price;
+    const itemContext = document.getElementById('itemContext');
+    itemContext.innerHTML = "";
+    const itemScript = document.createElement("script");
+    itemScript.type = "text/javascript";
+    itemScript.src = "constant/" + item.page + ".js";
+    itemContext.appendChild(itemScript);
 });
