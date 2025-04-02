@@ -3,8 +3,12 @@ document.getElementById('itemContext').innerHTML = `
 <img src="img/dmt/IMG_7053.jpg" style="width: 50%" alt="alternative">
 <p>
      · 推荐理由
-    <br>这款是阿然很喜欢的，细腻贴合！
+    <br>这款也是阿然很喜欢的，细腻贴合！
     <br>中高刺激度，使用时间会更长，能一直爽哟~
+    <br>
+    br> · 礼包里面都有什么呢？
+    <br>单品：飞机杯+润滑油一包
+    <br>礼包：飞机杯+润滑油一瓶+吸水棒+加热棒+毛巾+保护粉+收纳袋
     <br>
     <br> · 新手教程
     <br>初次使用，沐浴露清洗，内外用纸巾吸干，加润滑油...
