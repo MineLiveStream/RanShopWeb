@@ -1,6 +1,6 @@
 document.getElementById('itemContext').innerHTML = `
-<h2>【阿然严选】🎉日本Maccos棒球妹飞机杯</h2>
-<img src="img/aone/pic1.jpg" style="width: 50%" alt="alternative">
+<h2>【阿然严选】🎉日本Maccos螺旋子宫飞机杯</h2>
+<img src="img/maccos/pic1.jpg" style="width: 50%" alt="alternative">
 <p>
      · 推荐理由
     <br>材质很好滑滑的，舒适性高，相比其他款重量大了，包裹感强！

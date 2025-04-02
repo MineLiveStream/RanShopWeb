@@ -1,6 +1,6 @@
 document.getElementById('itemContext').innerHTML = `
 <h2>【阿然严选】🎉DMT探险队03飞机杯</h2>
-<img src="img/aone/pic1.jpg" style="width: 50%" alt="alternative">
+<img src="img/dmt/IMG_7053.jpg" style="width: 50%" alt="alternative">
 <p>
      · 推荐理由
     <br>这款是阿然很喜欢的，细腻贴合！
@@ -35,6 +35,7 @@ document.getElementById('itemContext').innerHTML = `
 <img src="img/dmt/IMG_7042.jpg" style="width: 100%" alt="alternative">
 <img src="img/dmt/IMG_7043.jpg" style="width: 100%" alt="alternative">
 <img src="img/dmt/IMG_7044.jpg" style="width: 100%" alt="alternative">
+<img src="img/dmt/IMG_7054.jpg" style="width: 100%" alt="alternative">
 <p> · 退款政策
        <br>1. 签收快递七天内可申请
        <br>2. 未拆封表面并塑封完整
