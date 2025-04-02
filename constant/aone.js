@@ -1,5 +1,5 @@
 document.getElementById('itemContext').innerHTML = `
-<h2>【阿然推荐】👍日本A-one六连子宫飞机杯</h2>
+<h2>【阿然推荐】👍日本A-one六连子宫飞机杯 全新！</h2>
 
 <img src="img/aone/pic1.jpg" style="width: 50%" alt="alternative">
 <p>
