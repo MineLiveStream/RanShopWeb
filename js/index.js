@@ -1,5 +1,5 @@
 // API地址
-const api = 'http://shop-api.minelive.top';
+const api = 'https://shop-api.minelive.top';
 //const api = 'http://shop-api.minelive.top';
 
 // 主题
