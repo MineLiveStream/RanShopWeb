@@ -1,6 +1,6 @@
 // API地址
 const api = 'http://127.0.0.1:2263';
-//const api = 'http://127.0.0.1:2264';
+//const api = 'http://shop-api.minelive.top';
 
 // 主题
 mdui.setColorScheme('#ff3d00');
