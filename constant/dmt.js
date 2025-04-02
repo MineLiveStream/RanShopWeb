@@ -4,7 +4,7 @@ document.getElementById('itemContext').innerHTML = `
 <p>
      · 推荐理由
     <br>这款也是阿然很喜欢的，细腻贴合！
-    <br>中高刺激度，使用时间会更长，能一直爽哟~
+    <br>就像好多软乎软乎的肉粒在给你按摩呢~
     <br>
     br> · 礼包里面都有什么呢？
     <br>单品：飞机杯+润滑油一包
