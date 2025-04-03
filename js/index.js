@@ -19,7 +19,7 @@ function isMobile() {
 }
 
 if (isMobile()) {
-    document.getElementById('itemContext').style.width = "50%";
+    document.getElementById('itemContext').style.width = "60%";
     document.getElementById('shopMenu').style.width = "49%";
 } else {
     document.getElementById('itemContext').style.width = "70%";
