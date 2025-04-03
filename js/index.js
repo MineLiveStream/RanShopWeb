@@ -19,11 +19,18 @@ function isMobile() {
 }
 
 if (isMobile()) {
-    document.getElementById('itemContext').style.width = "60%";
-    document.getElementById('shopMenu').style.width = "49%";
+    document.getElementById('itemContextCard').remove();
+    document.getElementById('mainDiv').style.display = "row";
+    document.getElementById('mainDiv').style.height = "100%";
+    document.getElementById('shopMenu').style.width = "100%";
+    document.getElementById('shopMenu').style.height = "100%";
+    const newItemContext = document.createElement('itemContext');
+    const itemInfoDiv = document.createElement('div');
+    itemInfoDiv.id = "itemContext";
+    itemInfoDiv.style.margin = "10px";
+    document.getElementById('phoneItemContext').appendChild(itemInfoDiv);
 } else {
-    document.getElementById('itemContext').style.width = "70%";
-    document.getElementById('shopMenu').style.width = "29%";
+    document.getElementById('itemInfo').remove();
 }
 
 // 弹出提示

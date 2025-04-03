@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="mdui-theme-light" lang="zh">
     <head>
-        <meta charset=utf-8 />
+        <meta charset=utf-8 name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
         <title>然的小店</title>
         <link rel="icon" href="https://s1.ax1x.com/2020/08/08/a4VB1f.png">
         <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
@@ -9,7 +9,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
-        <div style="display: flex; align-items: start;">
+        <div style="display: flex; align-items: start;" id="mainDiv">
             <mdui-top-app-bar padding-top scroll-behavior="elevate">
                 <img src="img/icon.png" alt="alternative" style="width: 2.5rem; height: 2.5rem;">
                 <mdui-top-app-bar-title id="title">欢迎来到然的小店</mdui-top-app-bar-title>
@@ -17,13 +17,20 @@
                     <mdui-button-icon variant="filled" icon="chat" id="helpBtn"></mdui-button-icon>
                 </mdui-tooltip>
             </mdui-top-app-bar>
-            <mdui-card style="width: 70%;height:100vh;overflow-y: auto;margin-left: 10px;margin-right: 10px;" id="itemContext"></mdui-card>
-            <mdui-card style="width: 29%;height:100vh;overflow-y: auto" id="shopMenu">
-                <mdui-tabs value="tab-1" class="mdui-prose">
-                    <mdui-tab value="tab-1" id="chatroomTitle">🛍️立即购买</mdui-tab>
-                    <mdui-tab value="tab-2">📋查询订单</mdui-tab>
 
-                    <mdui-tab-panel slot="panel" value="tab-1">
+            <mdui-card style="width: 70%;height:100vh;overflow-y: auto;margin-left: 10px;margin-right: 10px;" id="itemContextCard">
+                <div style="margin: 10px" id="itemContext"></div>
+            </mdui-card>
+
+            <mdui-card style="width: 29%;height:100vh;overflow-y: auto" id="shopMenu">
+                <mdui-tabs value="tab-2" class="mdui-prose" id="shopTab">
+                    <mdui-tab value="tab-1" id="itemInfo">🎁商品详情</mdui-tab>
+                    <mdui-tab value="tab-2">🛍️立即购买</mdui-tab>
+                    <mdui-tab value="tab-3">📋查询订单</mdui-tab>
+
+                    <mdui-tab-panel slot="panel" value="tab-1" id="phoneItemContext"></mdui-tab-panel>
+
+                    <mdui-tab-panel slot="panel" value="tab-2">
                         <div style="margin: 10px">
                             <div style="display: flex; justify-content: center;align-items: center;margin-bottom: 5px">
                                 <mdui-select label="商品" icon="shopping_bag" id="itemSelect" style="width: 65%;margin-right: 3px"></mdui-select>
@@ -63,7 +70,7 @@
                         <mdui-button full-width id="buyBtn" style="margin-bottom: 10px">立即下单，隐私发货！</mdui-button>
                     </mdui-tab-panel>
 
-                    <mdui-tab-panel slot="panel" value="tab-2" style="width: 100%">
+                    <mdui-tab-panel slot="panel" value="tab-3" style="width: 100%">
                         <div style="margin: 10px">
                             <p style="margin-top: 10px">
                                 付款后将发送至您邮箱,
