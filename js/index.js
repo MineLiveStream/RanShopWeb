@@ -1,5 +1,5 @@
 // API地址
-const api = 'https://shop-api.minelive.top';
+const api = 'http://127.0.0.1:2263'//'https://shop-api.minelive.top';
 
 // 主题
 mdui.setColorScheme('#a8a8e4');
@@ -217,7 +217,7 @@ function checkLog(orderId) {
                         "<br>下单数量: " + data.count +
                         "<br>购买时间: " + formatTimestamp(data.time) +
                         "<br>支付方式: " + data.payType +
-                        "<br>快递单号: " + data.delivery;
+                        "<br>快递单号: " + data.trackingNum;
                     mdui.snackbar({message: "查询成功啦╭(○｀∀´○)╯"});
                 } else {
                     mdui.snackbar({message: data.msg});
