@@ -351,3 +351,8 @@ buyCountSelect.addEventListener('change', function() {
     }
     updatePrice();
 });
+
+// 点击顶部栏回到顶部
+document.getElementById("topBtn").addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
