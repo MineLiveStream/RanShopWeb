@@ -24,31 +24,57 @@
                     <mdui-tab value="tab-2">📋查询订单</mdui-tab>
 
                     <mdui-tab-panel slot="panel" value="tab-1">
-                        <mdui-select label="商品" id="itemSelect" style="margin-bottom: 5px;margin-top: 5px"></mdui-select>
+                        <div style="margin: 5px">
+                            <div style="display: flex; justify-content: center;align-items: center;margin-bottom: 5px">
+                                <mdui-select label="商品" icon="shopping_bag" id="itemSelect" style="width: 65%;margin-right: 3px"></mdui-select>
+                                <mdui-select label="数量" icon="add_box" id="count" style="width: 35%" value="1">
+                                    <mdui-menu-item value="1">1个</mdui-menu-item>
+                                    <mdui-menu-item value="2">2个</mdui-menu-item>
+                                    <mdui-menu-item value="3">3个</mdui-menu-item>
+                                    <mdui-menu-item value="4">4个</mdui-menu-item>
+                                    <mdui-menu-item value="5">5个</mdui-menu-item>
+                                    <mdui-menu-item value="6">6个</mdui-menu-item>
+                                    <mdui-menu-item value="7">7个</mdui-menu-item>
+                                    <mdui-menu-item value="8">8个</mdui-menu-item>
+                                    <mdui-menu-item value="9">9个</mdui-menu-item>
+                                </mdui-select>
+                            </div>
+                            <mdui-text-field id="name" label="收货人" style="margin-bottom: 5px">
+                                <mdui-button-icon slot="icon" icon="account_circle"></mdui-button-icon>
+                            </mdui-text-field>
+                            <div style="display: flex; justify-content: center;align-items: center;margin-bottom: 5px">
+                                <mdui-select label="地区" icon="smartphone" style="width: 35%;margin-right: 3px" value="86" id="country">
+                                    <mdui-menu-item value="86">+86</mdui-menu-item>
+                                </mdui-select>
+                                <mdui-text-field id="phone" label="联系电话(加密)" helper-on-focus style="width: 65%"></mdui-text-field>
+                            </div>
 
-                        <mdui-text-field id="name" label="收货人" style="margin-bottom: 5px"></mdui-text-field>
-                        <div style="display: flex; justify-content: center;align-items: center;margin-bottom: 5px">
-                            <mdui-select style="width: 25%;margin-right: 3px" value="86" id="country">
-                                <mdui-menu-item value="86">+86</mdui-menu-item>
-                            </mdui-select>
-                            <mdui-text-field id="phone" label="联系电话(加密)" style="width: 75%"></mdui-text-field>
+                            <mdui-text-field id="address" label="收货地址(仅支持中国大陆地址)" style="margin-bottom: 5px" rows="2">
+                                <mdui-button-icon slot="icon" icon="house"></mdui-button-icon>
+                            </mdui-text-field>
+                            <mdui-text-field id="email" label="邮箱地址(用于接受快递单号)" style="margin-bottom: 5px">
+                                <mdui-button-icon slot="icon" icon="email"></mdui-button-icon>
+                            </mdui-text-field>
+                            <mdui-text-field id="confirm-email" label="重复邮箱地址(请重新输入邮箱)">
+                                <mdui-button-icon slot="icon" icon="mark_email_read"></mdui-button-icon>
+                            </mdui-text-field>
+                            <p id="priceText"></p>
                         </div>
-
-                        <mdui-text-field id="address" label="收货地址(仅支持中国大陆)" style="margin-bottom: 5px" rows="2"></mdui-text-field>
-                        <mdui-text-field id="email" label="邮箱地址(用于接受快递单号)" style="margin-bottom: 5px"></mdui-text-field>
-                        <mdui-text-field id="confirm-email" label="重复邮箱地址(请重新输入邮箱)"></mdui-text-field>
-                        <p id="priceText"></p>
                         <mdui-button full-width id="buyBtn" style="margin-bottom: 10px">立即下单，隐私发货！</mdui-button>
                     </mdui-tab-panel>
 
                     <mdui-tab-panel slot="panel" value="tab-2" style="width: 100%">
-                        <p style="margin-top: 10px">
-                            付款后将发送至您邮箱,
-                            <br>若未收到请检查垃圾箱,
-                            <br>仍然无法找到订单号或需退款,
-                            <br>点击右上角按钮加群联系群主。
-                        </p>
-                        <mdui-text-field id="orderId" label="订单号" style="margin-bottom: 10px;"></mdui-text-field>
+                        <div style="margin: 5px">
+                            <p style="margin-top: 10px">
+                                付款后将发送至您邮箱,
+                                <br>若未收到请检查垃圾箱,
+                                <br>仍然无法找到订单号或需退款,
+                                <br>点击右上角按钮加群联系群主。
+                            </p>
+                            <mdui-text-field id="orderId" label="订单号" style="margin-bottom: 10px;">
+                                <mdui-button-icon slot="icon" icon="assignment"></mdui-button-icon>
+                            </mdui-text-field>
+                        </div>
                         <mdui-button full-width id="checkLogBtn" style="margin-bottom: 20px">查询订单</mdui-button>
                         <mdui-card style="width: 100%" id="logResultText"></mdui-card>
                     </mdui-tab-panel>
