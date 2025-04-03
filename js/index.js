@@ -196,6 +196,7 @@ document.getElementById('buyBtn').addEventListener('click', function(event) {
             + '<br>收货地址: ' + document.getElementById('address').value
             + '<br>通知邮箱: ' + document.getElementById('email').value
             + '<br>请确认以上信息准确无误<br>'
+            + '<br>数量: ' + document.getElementById('buyCount').value
             + '<br>' + document.getElementById('priceText').innerHTML
             + '<br>请选择您的付款方式';
 
