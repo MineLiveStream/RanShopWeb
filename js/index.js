@@ -22,7 +22,7 @@ function isMobile() {
 function notice(context) {
     if (isMobile()) {
         mdui.alert({
-                headline: "小然提醒您~",
+                headline: "报告！",
                 description: context,
                 closeOnOverlayClick: true,
                 confirmText: "好的"});
