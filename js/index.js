@@ -29,6 +29,7 @@ if (isMobile()) {
     itemInfoDiv.id = "itemContext";
     itemInfoDiv.style.margin = "10px";
     document.getElementById('phoneItemContext').appendChild(itemInfoDiv);
+    document.getElementById('shopTab').value = "tab-1";
 } else {
     document.getElementById('itemInfo').remove();
 }
