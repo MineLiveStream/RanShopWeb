@@ -18,6 +18,14 @@ function isMobile() {
     return false;
 }
 
+if (isMobile()) {
+    document.getElementById('itemContext').style.width = "50%";
+    document.getElementById('shopMenu').style.width = "49%";
+} else {
+    document.getElementById('itemContext').style.width = "70%";
+    document.getElementById('shopMenu').style.width = "29%";
+}
+
 // 弹出提示
 function notice(context) {
     if (isMobile()) {
