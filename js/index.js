@@ -4,6 +4,32 @@ const api = 'https://shop-api.minelive.top';
 // 主题
 mdui.setColorScheme('#a8a8e4');
 
+// 判断是否是手机端
+function isMobile() {
+    const mobileUserAgentFragments = [
+        'Android', 'webOS', 'iPhone', 'iPad', 'iPod', 'BlackBerry', 'IEMobile', 'Opera Mini'
+    ];
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    for (let i = 0; i < mobileUserAgentFragments.length; i++) {
+        if (userAgent.indexOf(mobileUserAgentFragments[i]) > -1) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// 弹出提示
+function notice(context) {
+    if (isMobile()) {
+        mdui.alert({
+                headline: "小然提醒您~",
+                description: context,
+                closeOnOverlayClick: true,
+                confirmText: "好的"});
+    } else mdui.snackbar({message: context});
+}
+
+// 二维码窗口
 const qrcodeDialog = document.getElementById('qrcodeDialog');
 const cancelOrderBtn = document.getElementById('cancelOrderBtn');
 cancelOrderBtn.addEventListener('click', function() {
@@ -16,22 +42,13 @@ cancelOrderBtn.addEventListener('click', function() {
 
 // 加群按钮
 document.getElementById('helpBtn').addEventListener('click', function() {
-    mdui.dialog({
-        headline: "是否继续？",
+    mdui.confirm({
+        headline: "是否继续?",
         description: "即将跳转QQ加群后私信联系群主哟~",
         closeOnOverlayClick: true,
-        actions: [
-            {
-                text: "取消",
-            },
-            {
-                text: "确认",
-                onClick: () => {
-                    window.open('https://qm.qq.com/q/jUfyfiKEo2', '_blank');
-                    return true;
-                },
-            }
-        ]
+        cancelText: "取消",
+        confirmText: "确认",
+        onConfirm: () => window.open('https://qm.qq.com/q/jUfyfiKEo2', '_blank')
     });
 });
 
@@ -59,7 +76,7 @@ function createOrder(payType) {
         phone: document.getElementById('phone').value,
         address: document.getElementById('address').value,
         email: document.getElementById('email').value,
-        count: 1,
+        count: document.getElementById('buyCount').value,
         item: document.getElementById('itemSelect').value,
         payType: payType
     };
@@ -94,16 +111,16 @@ function createOrder(payType) {
                 qrCodeImage.onload = function() {
                     qrCodeElement.appendChild(qrCodeImage);
                 };
-                qrcodeDialog.description = '付款价格：' + (item.price / 100).toFixed(2) + ' 元';
+                qrcodeDialog.description = '付款价格：' + (data.price / 100).toFixed(2) + ' 元';
                 qrcodeDialog.open = true;
                 pollOrderStatus(data.orderId, 3000);
             } else {
-                mdui.snackbar({message: data.msg});
+                notice(data.msg);
             }
         })
         .catch(error => {
             document.getElementById('buyBtn').loading = false;
-            mdui.snackbar({message: "发生了错误www请稍后再试吧"});
+            notice("发生了错误www请稍后再试吧。");
             console.error('检测到错误', error);
         });
 }
@@ -114,10 +131,10 @@ async function pollOrderStatus(orderId, interval = 3000) {
         const data = await checkOrder(orderId);
         if (data.code === 200) {
             qrcodeDialog.open = false;
-            mdui.snackbar({message: "购买成功(╹▽╹)请留意邮箱通知"});
+            notice("购买成功(╹▽╹)请留意邮箱通知。");
             break;
         } else if (data.code !== 5000) {
-            mdui.snackbar({message: data.msg});
+            notice(data.msg);
             qrcodeDialog.open = false;
             break;
         }
@@ -163,15 +180,15 @@ document.getElementById('cancelPaymentBtn').addEventListener('click', function(e
 // 点击下单按钮
 document.getElementById('buyBtn').addEventListener('click', function(event) {
     if (!document.getElementById('name').value) {
-        mdui.snackbar({message: "收货人不能为空"});
+        notice("收货人不能为空。");
     } else if (!document.getElementById('address').value) {
-        mdui.snackbar({message: "收货地址不能为空"});
+        notice("收货地址不能为空。");
     } else if (!document.getElementById('phone').value) {
-        mdui.snackbar({message: "联系电话不能为空"});
+        notice("联系电话不能为空。");
     } else if (!document.getElementById('email').value) {
-        mdui.snackbar({message: "邮箱地址不能为空"});
+        notice("邮箱地址不能为空。");
     } else if (document.getElementById('email').value !== document.getElementById('confirm-email').value) {
-        mdui.snackbar({message: "两次输入邮箱地址不一致"});
+        notice("两次输入邮箱地址不一致。");
     } else {
         document.getElementById('confirmText').innerHTML =
             '收货人: ' + document.getElementById('name').value
@@ -190,7 +207,7 @@ document.getElementById('buyBtn').addEventListener('click', function(event) {
 // 查询订单按钮
 document.getElementById('checkLogBtn').addEventListener('click', function(event) {
     if (!document.getElementById('orderId').value) {
-        mdui.snackbar({message: "订单号不能为空"});
+        notice("订单号不能为空。");
     } else {
         checkLog(document.getElementById('orderId').value);
         document.getElementById('checkLogBtn').loading = true;
@@ -223,14 +240,14 @@ function checkLog(orderId) {
                         "<br>付款价格: " + (data.price / 100).toFixed(2) + " 元" +
                         "<br>快递单号: " + data.trackingNum +
                         "<br>";
-                    mdui.snackbar({message: "查询成功啦╭(○｀∀´○)╯"});
+                    notice("查询成功啦╭(○｀∀´○)╯");
                 } else {
-                    mdui.snackbar({message: data.msg});
+                    notice(data.msg);
                 }
             })
             .catch(error => {
                 document.getElementById('checkLogBtn').loading = false;
-                mdui.snackbar({message: '不好了！查询订单时发生错误'});
+                notice('不好了！查询订单时发生错误。');
                 document.getElementById('logResultText').textContent = '查询订单发生错误: ' + error.message;
             });
 }
@@ -248,6 +265,7 @@ function formatTimestamp(timestamp) {
 
 // 获取价格
 const itemSelect = document.getElementById('itemSelect');
+const buyCountSelect = document.getElementById('buyCount');
 let itemData;
 function getItem() {
     fetch(api + "/item")
@@ -272,26 +290,22 @@ function getItem() {
                         }
                     }
                 } else {
-                    mdui.snackbar({message: data.msg});
+                    notice(data.msg);
                 }
             })
             .catch(error => {
-                mdui.snackbar({message: '不好了！获取商品时发生错误'});
+                notice('不好了！获取商品时发生错误。');
             });
 }
 getItem();
 
 // 更改页面自动更改详情
+let logBuyCountSelectValue;
 let logItemSelectValue;
 let logItemPageValue;
-itemSelect.addEventListener('change', function() {
-    if (itemSelect.value) {
-        logItemSelectValue = itemSelect.value;
-    } else {
-        itemSelect.value = logItemSelectValue;
-    }
+function updatePrice() {
     const item = itemData[itemSelect.value];
-    const price = (item.price / 100).toFixed(2);
+    const price = (item.price / 100).toFixed(2) * parseFloat(buyCountSelect.value);
     document.getElementById('priceText').innerHTML = "商品总价：￥" + price + "<br>邮费：￥0.00<br>实付款：￥" + price;
 
     if (item.page !== logItemPageValue) {
@@ -303,4 +317,20 @@ itemSelect.addEventListener('change', function() {
         itemScript.src = "constant/" + item.page + ".js";
         itemContext.appendChild(itemScript);
     }
+}
+itemSelect.addEventListener('change', function() {
+    if (itemSelect.value) {
+        logItemSelectValue = itemSelect.value;
+    } else {
+        itemSelect.value = logItemSelectValue;
+    }
+    updatePrice();
+});
+buyCountSelect.addEventListener('change', function() {
+    if (buyCountSelect.value) {
+        logBuyCountSelectValue = buyCountSelect.value;
+    } else {
+        buyCountSelect.value = logBuyCountSelectValue;
+    }
+    updatePrice();
 });
