@@ -1,5 +1,5 @@
 // API地址
-const api = 'http://127.0.0.1:2263'//'https://shop-api.minelive.top';
+const api = 'https://shop-api.minelive.top';
 
 // 主题
 mdui.setColorScheme('#a8a8e4');
@@ -94,7 +94,7 @@ function createOrder(payType) {
                 qrCodeImage.onload = function() {
                     qrCodeElement.appendChild(qrCodeImage);
                 };
-                qrcodeDialog.description = '付款价格：' + (data.price / 100) + ' 元';
+                qrcodeDialog.description = '付款价格：' + (item.price / 100).toFixed(2) + ' 元';
                 qrcodeDialog.open = true;
                 pollOrderStatus(data.orderId, 3000);
             } else {
@@ -209,14 +209,17 @@ function checkLog(orderId) {
             .then(data => {
                 document.getElementById('checkLogBtn').loading = false;
                 if (data.code === 200) {
+                    const item = itemData[itemSelect.value];
                     document.getElementById('logResultText').innerHTML =
                         "<h3>查询结果</h3>收货人: " + data.name +
                         "<br>邮箱地址: " + data.email +
                         "<br>联系电话: " + data.phone +
                         "<br>订单状态: " + data.status +
+                        "<br>商品名称: " + item.name +
                         "<br>下单数量: " + data.count +
                         "<br>购买时间: " + formatTimestamp(data.time) +
                         "<br>支付方式: " + data.payType +
+                        "<br>付款价格: " + (data.price / 100).toFixed(2) + " 元" +
                         "<br>快递单号: " + data.trackingNum;
                     mdui.snackbar({message: "查询成功啦╭(○｀∀´○)╯"});
                 } else {
