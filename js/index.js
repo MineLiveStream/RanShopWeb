@@ -35,25 +35,18 @@ document.getElementById('helpBtn').addEventListener('click', function() {
     });
 });
 
-// 切换主题
-let darkMode = localStorage.getItem('dark');
-if (!darkMode) {
-    darkMode = false;
-    mdui.setTheme('light');
-} else {
-    darkMode = true;
-    mdui.setTheme('dark');
-}
-document.getElementById('themeBtn').addEventListener('click', function() {
-    if (darkMode) {
-        darkMode = false;
-        mdui.setTheme('light');
-    } else {
-        darkMode = true;
-        mdui.setTheme('dark');
-    }
-    localStorage.setItem('dark', darkMode);
+// 读取主题
+let darkMode = localStorage.getItem('dark') === 'true';
+
+// 设置初始主题
+mdui.setTheme(darkMode ? 'dark' : 'light');
+
+document.getElementById('themeBtn').addEventListener('click', function () {
+    darkMode = !darkMode; // 取反主题状态
+    mdui.setTheme(darkMode ? 'dark' : 'light');
+    localStorage.setItem('dark', darkMode); // 存储字符串 'true' 或 'false'
 });
+
 
 // 禁止修改手机位置
 document.getElementById('country').addEventListener('change', function() {
