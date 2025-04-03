@@ -209,6 +209,7 @@ function checkLog(orderId) {
             .then(data => {
                 document.getElementById('checkLogBtn').loading = false;
                 if (data.code === 200) {
+                    document.getElementById('orderId').value = "";
                     const item = itemData[itemSelect.value];
                     document.getElementById('logResultText').innerHTML =
                         "<h3>查询结果</h3>收货人: " + data.name +
@@ -220,7 +221,8 @@ function checkLog(orderId) {
                         "<br>购买时间: " + formatTimestamp(data.time) +
                         "<br>支付方式: " + data.payType +
                         "<br>付款价格: " + (data.price / 100).toFixed(2) + " 元" +
-                        "<br>快递单号: " + data.trackingNum;
+                        "<br>快递单号: " + data.trackingNum +
+                        "<br>";
                     mdui.snackbar({message: "查询成功啦╭(○｀∀´○)╯"});
                 } else {
                     mdui.snackbar({message: data.msg});
