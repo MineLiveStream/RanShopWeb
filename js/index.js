@@ -323,17 +323,29 @@ function updatePrice() {
     const item = itemData[itemSelect.value];
     const price = (item.price / 100).toFixed(2) * parseFloat(buyCountSelect.value);
     document.getElementById('priceText').innerHTML = "商品总价：￥" + price + "<br>邮费：￥0.00<br>实付款：￥" + price;
-
     if (item.page !== logItemPageValue) {
         logItemPageValue = item.page;
         const itemContext = document.getElementById('itemContext');
         itemContext.innerHTML = "";
+        // 显示 loading 进度条
+        const loading = document.getElementById('loadingProgress');
+        loading.style.display = 'block';
         const itemScript = document.createElement("script");
         itemScript.type = "text/javascript";
         itemScript.src = "constant/" + item.page + ".js";
+        // 当脚本加载完成时隐藏 loading
+        itemScript.onload = function () {
+            loading.style.display = 'none';
+        };
+        // 脚本加载失败也隐藏 loading
+        itemScript.onerror = function () {
+            loading.style.display = 'none';
+            console.error("脚本加载失败: " + itemScript.src);
+        };
         itemContext.appendChild(itemScript);
     }
 }
+
 itemSelect.addEventListener('change', function() {
     if (itemSelect.value) {
         logItemSelectValue = itemSelect.value;
