@@ -7,15 +7,14 @@ mdui.setColorScheme('#a8a8e4');
 // 判断是否是手机端
 function isMobile() {
     const mobileUserAgentFragments = [
-        'Android', 'webOS', 'iPhone', 'iPad', 'iPod', 'BlackBerry', 'IEMobile', 'Opera Mini'
+        'Android', 'webOS', 'iPhone', 'iPad', 'iPod', 'BlackBerry', 'IEMobile', 'Opera Mini', 'Mobile', 'Phone'
     ];
     const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    for (let i = 0; i < mobileUserAgentFragments.length; i++) {
-        if (userAgent.indexOf(mobileUserAgentFragments[i]) > -1) {
-            return true;
-        }
-    }
-    return false;
+    const isMobileDevice = mobileUserAgentFragments.some(fragment =>
+        userAgent.includes(fragment)
+    );
+    const hasTouchScreen = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    return isMobileDevice || hasTouchScreen;
 }
 
 if (isMobile()) {
