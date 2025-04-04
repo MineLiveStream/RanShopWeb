@@ -54,16 +54,16 @@
                                 <mdui-select label="地区" icon="smartphone" style="width: 35%;margin-right: 3px" value="86" id="country">
                                     <mdui-menu-item value="86">+86</mdui-menu-item>
                                 </mdui-select>
-                                <mdui-text-field id="phone" label="联系电话(加密)" helper-on-focus style="width: 65%"></mdui-text-field>
+                                <mdui-text-field id="phone" label="联系电话(加密)" helper-on-focus style="width: 65%" type="number"></mdui-text-field>
                             </div>
 
                             <mdui-text-field id="address" label="收货地址(仅支持中国大陆地址)" style="margin-bottom: 5px" rows="2">
                                 <mdui-button-icon slot="icon" icon="house"></mdui-button-icon>
                             </mdui-text-field>
-                            <mdui-text-field id="email" label="邮箱地址(用于接受快递单号)" style="margin-bottom: 5px">
+                            <mdui-text-field id="email" label="邮箱地址(用于接受快递单号)" style="margin-bottom: 5px" type="email">
                                 <mdui-button-icon slot="icon" icon="email"></mdui-button-icon>
                             </mdui-text-field>
-                            <mdui-text-field id="confirm-email" label="重复邮箱地址(请重新输入邮箱)">
+                            <mdui-text-field id="confirm-email" label="重复邮箱地址(请重新输入邮箱)" type="email">
                                 <mdui-button-icon slot="icon" icon="mark_email_read"></mdui-button-icon>
                             </mdui-text-field>
                             <p id="priceText"></p>
