@@ -295,6 +295,8 @@ function getItem() {
                 if (data.code === 200) {
                     itemData = data.data;
                     itemSelect.innerHTML = "";
+                    const keys = Object.keys(data.data);
+                    const lastKey = keys[keys.length - 1];
                     for (const key in data.data) {
                         if (data.data.hasOwnProperty(key)) {
                             const item = data.data[key];
@@ -302,7 +304,9 @@ function getItem() {
                             mduiItem.value = key;
                             mduiItem.innerHTML = item.name;
                             itemSelect.appendChild(mduiItem);
-                            itemSelect.value = mduiItem.value;
+                            if (key === lastKey) {
+                                itemSelect.value = mduiItem.value;
+                            }
                         }
                     }
                 } else {
@@ -327,20 +331,16 @@ function updatePrice() {
         logItemPageValue = item.page;
         const itemContext = document.getElementById('itemContext');
         itemContext.innerHTML = "";
-        // 显示 loading 进度条
         const loading = document.getElementById('loadingProgress');
         loading.style.display = 'block';
         const itemScript = document.createElement("script");
         itemScript.type = "text/javascript";
         itemScript.src = "constant/" + item.page + ".js";
-        // 当脚本加载完成时隐藏 loading
         itemScript.onload = function () {
             loading.style.display = 'none';
         };
-        // 脚本加载失败也隐藏 loading
         itemScript.onerror = function () {
             loading.style.display = 'none';
-            console.error("脚本加载失败: " + itemScript.src);
         };
         itemContext.appendChild(itemScript);
     }
