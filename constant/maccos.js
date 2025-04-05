@@ -5,7 +5,9 @@ document.getElementById('itemContext').innerHTML = `
      · 推荐理由
     <br>材质很好滑滑的，舒适性高，相比其他款重量大了，包裹感强！
     <br>中高刺激度，使用时间会更长，能一直爽哟~
-    <br>
+</p>
+<img src="img/maccos/IMG_7081.jpg" style="width: 50%" alt="alternative">
+<p>
     <br> · 礼包里面都有什么呢？
     <br>单品：飞机杯+润滑油一包
     <br>礼包：飞机杯+润滑油一瓶+清洗液+加热棒+保护粉
@@ -36,6 +38,7 @@ document.getElementById('itemContext').innerHTML = `
 <img src="img/maccos/IMG_7029.jpg" style="width: 100%" alt="alternative">
 <img src="img/maccos/IMG_7030.jpg" style="width: 100%" alt="alternative">
 <img src="img/maccos/IMG_7031.jpg" style="width: 100%" alt="alternative">
+<img src="img/maccos/pic2.jpg" style="width: 100%" alt="alternative">
 <p> · 退款政策
        <br>1. 签收快递七天内可申请
        <br>2. 未拆封表面并塑封完整
