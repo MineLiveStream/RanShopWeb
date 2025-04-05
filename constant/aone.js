@@ -1,3 +1,6 @@
+// 主题
+mdui.setColorScheme('#a8a8e4');
+// 介绍
 document.getElementById('itemContext').innerHTML = `
 <h2>【阿然推荐】👍日本A-one六连子宫飞机杯 全新！</h2>
 

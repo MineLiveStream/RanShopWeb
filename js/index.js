@@ -1,9 +1,6 @@
 // API地址
 const api = 'https://shop-api.minelive.top';
 
-// 主题
-mdui.setColorScheme('#a8a8e4');
-
 // 判断是否是手机端
 function isMobile() {
     const mobileUserAgentFragments = [

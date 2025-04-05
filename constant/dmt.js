@@ -1,3 +1,6 @@
+// 主题
+mdui.setColorScheme('#EC4888');
+// 介绍
 document.getElementById('itemContext').innerHTML = `
 <h2>【阿然严选】🎉DMT探险队03飞机杯 全新！</h2>
 <img src="img/dmt/IMG_7053.jpg" style="width: 50%" alt="alternative">
