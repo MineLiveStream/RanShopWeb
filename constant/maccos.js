@@ -6,7 +6,7 @@ document.getElementById('itemContext').innerHTML = `
 <img src="img/maccos/pic1.jpg" style="width: 50%" alt="alternative">
 <p>
      · 推荐理由
-    <br>材质很好滑滑的，舒适性高，相比其他款重量大了，包裹感强！
+    <br>材质很好滑滑的，舒适性高，相比其他款重量大了，满足感强！
     <br>中高刺激度，使用时间会更长，能一直爽哟~
 </p>
 <img src="img/maccos/IMG_7081.jpg" style="width: 50%" alt="alternative">
