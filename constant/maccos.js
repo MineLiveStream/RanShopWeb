@@ -1,5 +1,5 @@
 // 主题
-mdui.setColorScheme('#FFBD25');
+mdui.setColorScheme('#F79383');
 // 介绍
 document.getElementById('itemContext').innerHTML = `
 <h2>【阿然严选】🎉日本Maccos螺旋子宫飞机杯 全新！</h2>
